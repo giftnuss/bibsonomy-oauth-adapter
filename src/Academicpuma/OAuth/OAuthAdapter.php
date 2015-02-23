@@ -48,6 +48,13 @@ class OAuthAdapter {
      * @var \Academicpuma\OAuth\Subscriber\BibSonomySubscriber 
      */
     protected $bibsonomySubscriber;
+    
+    /**
+     * 
+     * @var array
+     */
+    protected $_parameters;
+    
     /**
      * 
      * @param array $config <code>['consumerKey' => '','consumerSecret => '', 'callbackUrl' => '', 'baseUrl' => '']</code>
