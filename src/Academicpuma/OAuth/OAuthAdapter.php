@@ -142,10 +142,16 @@ class OAuthAdapter {
     
     /**
      * Attaches $accessToken to the emitter
-     * @param \Academicpuma\OAuth\AccessToken $accessToken
+     * @param \Academicpuma\OAuth\Token\AccessToken $accessToken
      */
-    public function prepareClientForOAuthRequests(AccessToken $accessToken) {
+    public function prepareClientForOAuthRequests(Token\AccessToken $accessToken) {
+        $this->client = new Client([
+            'base_url' => $this->config['baseUrl'] . 'api', 
+            'defaults' => ['auth' => 'oauth']
+        ]);
+        
         $this->client->getEmitter()->attach($this->bibsonomySubscriber->getOAuthSubscriber($accessToken));
+        return $this->client;
     }
     
     public function __call($method, array $args = []) {
