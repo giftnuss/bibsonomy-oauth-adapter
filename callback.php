@@ -28,9 +28,11 @@ echo "<h1>RequestToken:</h1>";
 var_dump($requestToken); //dump out requestToken
 
 $accessToken = $client->getAccessToken($requestToken); //get AccessToken
-    
+
+$_SESSION['ACCESS_TOKEN'] = serialize($accessToken);
+
 echo "<h1>AccessToken</h1>";
 var_dump($accessToken); //dump out accessToken
 
-
-
+?>
+<p><a href="list.php">Click here for see an example</a></p>
