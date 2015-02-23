@@ -1,0 +1,19 @@
+{
+    "name": "academicpuma/bibsonomy-oauth-adapter",
+    "description": "Guzzle adapter for 3-legged OAuth1 token exchange with PUMA and BibSonomy.",
+    "authors": [
+        {
+            "name": "Sebastian Böttger",
+            "email": "boettger@cs.uni-kassel.de"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~4.0",
+        "guzzlehttp/oauth-subscriber": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Academicpuma\\OAuth\\": "src/Academicpuma/OAuth"
+        }
+    }
+}
