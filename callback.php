@@ -20,7 +20,7 @@ $requestToken = unserialize($_SESSION['REQUEST_TOKEN']);
 $client = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,
     'consumerSecret'    => CONSUMER_SECRET,
-    'callbackUrl'       => 'http://guzzle.local/callback.php',
+    'callbackUrl'       => CALLBACK_URL,
     'baseUrl'           => BASE_URL
 ]);
 

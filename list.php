@@ -23,7 +23,7 @@ $accessToken = unserialize($_SESSION['ACCESS_TOKEN']);
 $adapter = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,
     'consumerSecret'    => CONSUMER_SECRET,
-    'callbackUrl'       => 'http://guzzle.local/callback.php',
+    'callbackUrl'       => CALLBACK_URL,
     'baseUrl'           => BASE_URL
 ]);
 
