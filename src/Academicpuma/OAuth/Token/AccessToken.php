@@ -22,22 +22,24 @@ class AccessToken implements TokenInterface {
     
     private $userId;
     
-    public function __construct(ResponseInterface $response) {
+    public function __construct(ResponseInterface $response = null) {
         
-        $params = array();
-        parse_str((string) $response->getBody(), $params);
-        
-        $validParams = array_key_exists('oauth_token', $params)
-                    && array_key_exists('oauth_token_secret', $params)
-                    && array_key_exists('user_id', $params);
-        
-        if(!$validParams) {
-            throw new \BadMethodCallException("Invalid params");
+        if($response !== null) {
+            $params = array();
+            parse_str((string) $response->getBody(), $params);
+
+            $validParams = array_key_exists('oauth_token', $params)
+                        && array_key_exists('oauth_token_secret', $params)
+                        && array_key_exists('user_id', $params);
+
+            if(!$validParams) {
+                throw new \BadMethodCallException("Invalid params");
+            }
+
+            $this->oauthToken = $params['oauth_token'];
+            $this->oauthTokenSecret = $params['oauth_token_secret'];
+            $this->userId = $params['user_id'];
         }
-        
-        $this->oauthToken = $params['oauth_token'];
-        $this->oauthTokenSecret = $params['oauth_token_secret'];
-        $this->userId = $params['user_id'];
     }
     
     function getOauthToken() {
@@ -50,5 +52,17 @@ class AccessToken implements TokenInterface {
 
     function getUserId() {
         return $this->userId;
+    }
+    
+    function setOauthToken($oauthToken) {
+        $this->oauthToken = $oauthToken;
+    }
+
+    function setOauthTokenSecret($oauthTokenSecret) {
+        $this->oauthTokenSecret = $oauthTokenSecret;
+    }
+
+    function setUserId($userId) {
+        $this->userId = $userId;
     }
 }
