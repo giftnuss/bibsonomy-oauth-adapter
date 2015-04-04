@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Academicpuma\OAuth;
+namespace AcademicPuma\OAuth;
 use GuzzleHttp\Client;
 
 /**
@@ -56,7 +56,7 @@ class OAuthAdapter {
     
     /**
      *
-     * @var \Academicpuma\OAuth\Subscriber\BibSonomySubscriber 
+     * @var \AcademicPuma\OAuth\Subscriber\BibSonomySubscriber 
      */
     protected $bibsonomySubscriber;
     
@@ -81,11 +81,19 @@ class OAuthAdapter {
         $this->bibsonomySubscriber = new Subscriber\BibSonomySubscriber($this->consumerToken);
     }
     
+    /**
+     * 
+     * @return \AcademicPuma\OAuth\Token\ConsumerToken
+     */
     public function getConsumerToken() {
         
         return $this->consumerToken;
     }
     
+    /**
+     * 
+     * @return \AcademicPuma\OAuth\Token\RequestToken
+     */
     public function getRequestToken() {
         
         $this->client->getEmitter()->attach($this->bibsonomySubscriber->getRequestTokenSubscriber());
@@ -100,7 +108,7 @@ class OAuthAdapter {
 
     /**
      * 
-     * @param \Academicpuma\OAuth\Token\RequestToken $requestToken
+     * @param \AcademicPuma\OAuth\Token\RequestToken $requestToken
      */
     public function getAccessToken(Token\RequestToken $requestToken) {
         
@@ -118,12 +126,12 @@ class OAuthAdapter {
             return $accessToken;
         }
         
-        throw new \BadMethodCallException("Error: The oauth_token from callback is not the same as the request_token");
+        throw new \InvalidArgumentException("Error: The oauth_token from callback is not the same as the request_token");
     }
     
     /**
      * 
-     * @param \Academicpuma\OAuth\Token\RequestToken $requestToken
+     * @param \AcademicPuma\OAuth\Token\RequestToken $requestToken
      */
     public function redirect(Token\RequestToken $requestToken) {
             
@@ -160,7 +168,7 @@ class OAuthAdapter {
     
     /**
      * Attaches $accessToken to the emitter
-     * @param \Academicpuma\OAuth\Token\AccessToken $accessToken
+     * @param \AcademicPuma\OAuth\Token\AccessToken $accessToken
      */
     public function prepareClientForOAuthRequests(Token\AccessToken $accessToken) {
         $this->client = new Client([
@@ -185,7 +193,11 @@ class OAuthAdapter {
         return $this->client->$method($url, $options);
     }
     
-    
+    /**
+     * 
+     * @param string $value
+     * @return string
+     */
     public static function urlEncode($value){
         
         $encoded_ = rawurlencode($value);

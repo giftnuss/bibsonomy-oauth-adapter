@@ -1,16 +1,9 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 include('vendor/autoload.php');
 include('config.php');
 
-use Academicpuma\OAuth\OAuthAdapter;
+use AcademicPuma\OAuth\OAuthAdapter;
 
 session_start(); //resume session
 
@@ -18,7 +11,7 @@ session_start(); //resume session
 $accessToken = unserialize($_SESSION['ACCESS_TOKEN']); 
 
 /**
- * @var Academicpuma\OAuth\OAuthAdapter
+ * @var AcademicPuma\OAuth\OAuthAdapter
  */
 $adapter = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,
@@ -37,7 +30,6 @@ print_r($json1);
 echo "</pre>";
 
 //method 2: using the adapter
-
 $json2 = $adapter->get(BASE_URL.'api/groups?format=json')->json();
 
 echo "<pre>";

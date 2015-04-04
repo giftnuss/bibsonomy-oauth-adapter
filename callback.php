@@ -7,7 +7,7 @@
 include('vendor/autoload.php');
 include('config.php');
 
-use Academicpuma\OAuth\OAuthAdapter;
+use AcademicPuma\OAuth\OAuthAdapter;
 
 session_start(); //resume session
 
@@ -15,7 +15,7 @@ session_start(); //resume session
 $requestToken = unserialize($_SESSION['REQUEST_TOKEN']); 
 
 /**
- * @var Academicpuma\OAuth\OAuthAdapter
+ * @var AcademicPuma\OAuth\OAuthAdapter
  */
 $client = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,

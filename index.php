@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 include 'vendor/autoload.php';
 include 'config.php';
 
-use Academicpuma\OAuth\OAuthAdapter;
+use AcademicPuma\OAuth\OAuthAdapter;
 
 $client = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,

@@ -15,11 +15,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Academicpuma\OAuth\Subscriber;
+namespace AcademicPuma\OAuth\Subscriber;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
-use Academicpuma\OAuth\Token\ConsumerToken;
-use Academicpuma\OAuth\Token\AccessToken;
-use Academicpuma\OAuth\Token\RequestToken;
+use AcademicPuma\OAuth\Token\ConsumerToken;
+use AcademicPuma\OAuth\Token\AccessToken;
+use AcademicPuma\OAuth\Token\RequestToken;
 
 /**
  * 
@@ -29,7 +29,7 @@ class BibSonomySubscriber extends Oauth1 {
 
     /**
      *
-     * @var Academicpuma\OAuth\Token\ConsumerToken  
+     * @var AcademicPuma\OAuth\Token\ConsumerToken  
      */
     protected $consumerToken;
     

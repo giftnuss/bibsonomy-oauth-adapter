@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Academicpuma\OAuth\Token;
+namespace AcademicPuma\OAuth\Token;
 use GuzzleHttp\Message\ResponseInterface;
 
 /**
@@ -66,11 +66,19 @@ class RequestToken implements TokenInterface {
         $this->oauthCallbackConfirmed   = (bool)   $params['oauth_callback_confirmed'];
     }
     
-    function getOauthToken() {
+    /**
+     * 
+     * @return string
+     */
+    public function getOauthToken() {
         return $this->oauthToken;
     }
 
-    function getOauthTokenSecret() {
+    /**
+     * 
+     * @return string
+     */
+    public function getOauthTokenSecret() {
         return $this->oauthTokenSecret;
     }
 

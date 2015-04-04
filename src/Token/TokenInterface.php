@@ -15,31 +15,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Academicpuma\OAuth\Token;
+namespace AcademicPuma\OAuth\Token;
 
 /**
- * This class represents the ConsumerToken
  *
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
-class ConsumerToken implements TokenInterface {
-    
-    private $oauthToken;
-    
-    private $oauthTokenSecret;
+interface TokenInterface {
     
     
-    public function __construct($oauthToken, $oauthTokenSecret) {
-        $this->oauthToken = $oauthToken;
-        $this->oauthTokenSecret = $oauthTokenSecret;
-    }
+    public function getOauthToken();
     
-    public function getOauthToken() {
-        return $this->oauthToken;
-    }
-
-    public function getOauthTokenSecret() {
-        return $this->oauthTokenSecret;
-    }
-
+    public function getOauthTokenSecret();
 }
