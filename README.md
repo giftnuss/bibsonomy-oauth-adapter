@@ -17,17 +17,17 @@ $ composer require academicpuma/oauthadapter
 ## How to use OAuthAdapter ##
 
 1. Include the autoloader.
-
 ```
-:::php
+#!php
+
 $projectPath = 'projectpath';
 include $projectPath.'vendor/autoload.php';
 ```
 
 2. Initialize the OAuthAdapter
-
 ```
-:::php
+#!php
+
 use AcademicPuma\OAuth\OAuthAdapter;
 $client = new OAuthAdapter([
     'consumerKey'       => CONSUMER_KEY,
