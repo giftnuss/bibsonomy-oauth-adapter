@@ -107,8 +107,10 @@ class OAuthAdapter {
     }
 
     /**
-     * 
+     *
      * @param \AcademicPuma\OAuth\Token\RequestToken $requestToken
+     *
+     * @return Token\AccessToken
      */
     public function getAccessToken(Token\RequestToken $requestToken) {
         
@@ -165,10 +167,13 @@ class OAuthAdapter {
 
         return $params;
     }
-    
+
     /**
      * Attaches $accessToken to the emitter
+     *
      * @param \AcademicPuma\OAuth\Token\AccessToken $accessToken
+     *
+     * @return Client
      */
     public function prepareClientForOAuthRequests(Token\AccessToken $accessToken) {
         $this->client = new Client([

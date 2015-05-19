@@ -22,9 +22,8 @@ namespace AcademicPuma\OAuth\Token;
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
 interface TokenInterface {
-    
-    
+
     public function getOauthToken();
-    
+
     public function getOauthTokenSecret();
 }

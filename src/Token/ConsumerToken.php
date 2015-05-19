@@ -23,34 +23,37 @@ namespace AcademicPuma\OAuth\Token;
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
 class ConsumerToken implements TokenInterface {
-    
+
     private $oauthToken;
-    
+
     private $oauthTokenSecret;
-    
+
     /**
-     * 
+     *
      * @param string $oauthToken
      * @param string $oauthTokenSecret
      */
     public function __construct($oauthToken, $oauthTokenSecret) {
+
         $this->oauthToken = $oauthToken;
         $this->oauthTokenSecret = $oauthTokenSecret;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getOauthToken() {
+
         return $this->oauthToken;
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getOauthTokenSecret() {
+
         return $this->oauthTokenSecret;
     }
 

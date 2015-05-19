@@ -16,71 +16,72 @@
 */
 
 namespace AcademicPuma\OAuth\Subscriber;
+
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use AcademicPuma\OAuth\Token\ConsumerToken;
 use AcademicPuma\OAuth\Token\AccessToken;
 use AcademicPuma\OAuth\Token\RequestToken;
 
 /**
- * 
+ *
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
 class BibSonomySubscriber extends Oauth1 {
 
     /**
      *
-     * @var AcademicPuma\OAuth\Token\ConsumerToken  
+     * @var \AcademicPuma\OAuth\Token\ConsumerToken
      */
     protected $consumerToken;
-    
-    
+
     /**
-     * 
+     *
      * @param ConsumerToken $consumerToken
      */
     public function __construct(ConsumerToken $consumerToken) {
+
         parent::__construct([]);
         $this->consumerToken = $consumerToken;
     }
-    
+
     /**
-     * 
-     * @return GuzzleHttp\Subscriber\Oauth\Oauth1
+     *
+     * @return \GuzzleHttp\Subscriber\Oauth\Oauth1
      */
     public function getRequestTokenSubscriber() {
+
         return new parent([
-            'consumer_key'    => $this->consumerToken->getOauthToken(),
-            'consumer_secret' => $this->consumerToken->getOauthTokenSecret()
-        ]);
+                            'consumer_key' => $this->consumerToken->getOauthToken(),
+                            'consumer_secret' => $this->consumerToken->getOauthTokenSecret()]);
     }
 
     /**
-     * 
+     *
      * @param RequestToken $requestToken
-     * @return GuzzleHttp\Subscriber\Oauth\Oauth1
+     *
+     * @return \GuzzleHttp\Subscriber\Oauth\Oauth1
      */
     public function getAccessTokenSubscriber(RequestToken $requestToken) {
-        
+
         return new parent([
-            'consumer_key'    => $this->consumerToken->getOauthToken(),
-            'consumer_secret' => $this->consumerToken->getOauthTokenSecret(),
-            'token'           => $requestToken->getOauthToken(),
-            'token_secret'    => $requestToken->getOauthTokenSecret()
-        ]);
+                            'consumer_key' => $this->consumerToken->getOauthToken(),
+                            'consumer_secret' => $this->consumerToken->getOauthTokenSecret(),
+                            'token' => $requestToken->getOauthToken(),
+                            'token_secret' => $requestToken->getOauthTokenSecret()]);
     }
 
     /**
-     * 
+     *
      * @param AccessToken $accessToken
-     * @return GuzzleHttp\Subscriber\Oauth\Oauth1
+     *
+     * @return \GuzzleHttp\Subscriber\Oauth\Oauth1
      */
     public function getOAuthSubscriber(AccessToken $accessToken) {
-        
+
         return new parent([
-            'consumer_key'    => $this->consumerToken->getOauthToken(),
-            'consumer_secret' => $this->consumerToken->getOauthTokenSecret(),
-            'token'           => $accessToken->getOauthToken(),
-            'token_secret'    => $accessToken->getOauthTokenSecret()
-        ]);
+                            'consumer_key' => $this->consumerToken->getOauthToken(),
+                            'consumer_secret' => $this->consumerToken->getOauthTokenSecret(),
+                            'token' => $accessToken->getOauthToken(),
+                            'token_secret' => $accessToken->getOauthTokenSecret()]);
     }
 }

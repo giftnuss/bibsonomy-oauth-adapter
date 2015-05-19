@@ -16,75 +16,80 @@
 */
 
 namespace AcademicPuma\OAuth\Token;
+
 use GuzzleHttp\Message\ResponseInterface;
 
 /**
- * 
+ *
  *
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
 class RequestToken implements TokenInterface {
-    
+
     /**
      *
-     * @var string token 
+     * @var string token
      */
     private $oauthToken;
-    
+
     /**
      *
-     * @var string token secret 
+     * @var string token secret
      */
     private $oauthTokenSecret;
-    
+
     /**
      *
      * @var bool is callback confirmed?
      */
     private $oauthCallbackConfirmed;
-    
+
     /**
-     * 
+     *
      * @param ResponseInterface $response
      */
     public function __construct(ResponseInterface $response) {
-        
+
         $params = array();
         parse_str((string) $response->getBody(), $params);
-        
+
         $validParams = array_key_exists('oauth_token', $params)
                     && array_key_exists('oauth_token_secret', $params)
                     && array_key_exists('oauth_callback_confirmed', $params);
-               
-        
-        if(!$validParams) {
+
+        if (!$validParams) {
             throw new \BadMethodCallException("Invalid params");
         }
-        
-        $this->oauthToken               = (string) $params['oauth_token'];
-        $this->oauthTokenSecret         = (string) $params['oauth_token_secret'];
-        $this->oauthCallbackConfirmed   = (bool)   $params['oauth_callback_confirmed'];
+
+        $this->oauthToken = (string) $params['oauth_token'];
+        $this->oauthTokenSecret = (string) $params['oauth_token_secret'];
+        $this->oauthCallbackConfirmed = (bool) $params['oauth_callback_confirmed'];
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getOauthToken() {
+
         return $this->oauthToken;
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getOauthTokenSecret() {
+
         return $this->oauthTokenSecret;
     }
 
-    function isOauthCallbackConfirmed() {
+    /**
+     * @return bool
+     */
+    public function isOauthCallbackConfirmed() {
+
         return $this->oauthCallbackConfirmed;
     }
-
 
 }

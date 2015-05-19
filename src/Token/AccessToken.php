@@ -16,25 +16,25 @@
 */
 
 namespace AcademicPuma\OAuth\Token;
+
 use GuzzleHttp\Message\ResponseInterface;
 
-
 /**
- * This class represents the AccessTolen
+ * This class represents the AccessToken
  *
  * @author Sebastian Böttger <boettger@cs.uni-kassel.de>
  */
 class AccessToken implements TokenInterface {
-    
+
     private $oauthToken;
-    
+
     private $oauthTokenSecret;
-    
+
     private $userId;
-    
+
     public function __construct(ResponseInterface $response = null) {
-        
-        if($response !== null) {
+
+        if ($response !== null) {
             $params = array();
             parse_str((string) $response->getBody(), $params);
 
@@ -42,7 +42,7 @@ class AccessToken implements TokenInterface {
                         && array_key_exists('oauth_token_secret', $params)
                         && array_key_exists('user_id', $params);
 
-            if(!$validParams) {
+            if (!$validParams) {
                 throw new \BadMethodCallException("Invalid params");
             }
 
@@ -51,28 +51,34 @@ class AccessToken implements TokenInterface {
             $this->userId = $params['user_id'];
         }
     }
-    
-    function getOauthToken() {
+
+    public function getOauthToken() {
+
         return $this->oauthToken;
     }
 
-    function getOauthTokenSecret() {
+    public function getOauthTokenSecret() {
+
         return $this->oauthTokenSecret;
     }
 
-    function getUserId() {
+    public function getUserId() {
+
         return $this->userId;
     }
-    
-    function setOauthToken($oauthToken) {
+
+    public function setOauthToken($oauthToken) {
+
         $this->oauthToken = $oauthToken;
     }
 
-    function setOauthTokenSecret($oauthTokenSecret) {
+    public function setOauthTokenSecret($oauthTokenSecret) {
+
         $this->oauthTokenSecret = $oauthTokenSecret;
     }
 
-    function setUserId($userId) {
+    public function setUserId($userId) {
+
         $this->userId = $userId;
     }
 }
