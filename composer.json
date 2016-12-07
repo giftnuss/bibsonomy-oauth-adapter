@@ -10,7 +10,8 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "~4.0",
-        "guzzlehttp/oauth-subscriber": "*"
+        "guzzlehttp/oauth-subscriber": "*",
+        "phpunit/phpunit": "4.4.*"
     },
     "autoload": {
         "psr-4": {
