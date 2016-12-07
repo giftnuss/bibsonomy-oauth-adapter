@@ -26,7 +26,7 @@ use GuzzleHttp\Client;
  */
 class OAuthAdapter {
 
-    
+
     const REQUEST_TOKEN_URL = 'oauth/requestToken';
     
     const ACCESS_TOKEN_URL = 'oauth/accessToken';
@@ -74,7 +74,10 @@ class OAuthAdapter {
         
         $this->config = $config;
         
-        $this->client = new Client(['base_url' => $config['baseUrl'], 'defaults' => ['auth' => 'oauth']]);
+        $this->client = new Client([
+            'base_url' => $this->addTrailingSlash($config['baseUrl']),
+            'defaults' => ['auth' => 'oauth']
+        ]);
         
         $this->consumerToken = new Token\ConsumerToken($config['consumerKey'], $config['consumerSecret']);
         
@@ -210,4 +213,20 @@ class OAuthAdapter {
         return $encoded;
     }
 
+    /**
+     * Makes sure the url to validate has a trailing slash.
+     *
+     * @param string $urlToValidate The url to validate.
+     * @return string The passed url with a trailing slash.
+     */
+    private function addTrailingSlash($urlToValidate) {
+        return rtrim($urlToValidate, '/') . '/';
+    }
+
+    /**
+     * @return \GuzzleHttp\Client
+     */
+    public function getClient() {
+        return $this->client;
+    }
 }
