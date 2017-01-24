@@ -30,8 +30,12 @@ class OAuthAdapter {
     const REQUEST_TOKEN_URL = 'oauth/requestToken';
     
     const ACCESS_TOKEN_URL = 'oauth/accessToken';
-    
-    const AUTHORIZE_URL = 'oauth/authorize';
+
+    /**
+     * BibSonomy default is 'oauth/authorize'
+     * @var string
+     */
+    public $authorizeURL = 'oauth/authorize';
     
     
     public static $CLIENT_METHODS = ['get', 'post', 'put', 'delete', 'head', 'options', 'patch'];
@@ -78,6 +82,8 @@ class OAuthAdapter {
             'base_url' => $this->addTrailingSlash($config['baseUrl']),
             'defaults' => ['auth' => 'oauth']
         ]);
+
+        if (!empty($config['authUrl'])) $this->authorizeURL = $this->removeTrailingAndLeadingSlash($config['authUrl']);
         
         $this->consumerToken = new Token\ConsumerToken($config['consumerKey'], $config['consumerSecret']);
         
@@ -154,7 +160,7 @@ class OAuthAdapter {
     
     private function buildAuthorizeUrl($params) {
         
-        return $this->config['baseUrl'] . self::AUTHORIZE_URL . '?' . $params;
+        return $this->config['baseUrl'] . $this->authorizeURL . '?' . $params;
     }
     
     private function assembleRedirectParams(Token\RequestToken $requestToken) {
@@ -221,6 +227,10 @@ class OAuthAdapter {
      */
     private function addTrailingSlash($urlToValidate) {
         return rtrim($urlToValidate, '/') . '/';
+    }
+
+    private function removeTrailingAndLeadingSlash($urlToValidate) {
+        return ltrim(rtrim($urlToValidate, '/'), '/');
     }
 
     /**

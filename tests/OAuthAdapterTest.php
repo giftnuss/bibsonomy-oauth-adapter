@@ -29,6 +29,42 @@ class OAuthAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test custom authorize url.
+     */
+    public function testCustomAuthorizeUrl() {
+
+        $customAuthURLAdapter = new OAuthAdapter(array('consumerKey' => '', 'consumerSecret' => '', 'callbackUrl' => '',
+            'baseUrl' => 'http://puma.uni-kassel.de/', 'authUrl' => 'autoRegisterSamlAndOAuth'
+        ));
+
+        $this->assertEquals('autoRegisterSamlAndOAuth', $customAuthURLAdapter->authorizeURL);
+
+        $defaultAuthURLAdapter = new OAuthAdapter(array('consumerKey' => '', 'consumerSecret' => '', 'callbackUrl' => '',
+            'baseUrl' => 'http://puma.uni-kassel.de/'
+        ));
+
+        $this->assertEquals('oauth/authorize', $defaultAuthURLAdapter->authorizeURL);
+
+        $wrongAuthURLAdapter = new OAuthAdapter(array('consumerKey' => '', 'consumerSecret' => '', 'callbackUrl' => '',
+            'baseUrl' => 'http://puma.uni-kassel.de/', 'authUrl' => '/autoRegisterSamlAndOAuth'
+        ));
+
+        $this->assertEquals('autoRegisterSamlAndOAuth', $wrongAuthURLAdapter->authorizeURL);
+
+        $wrongAuthURLAdapter = new OAuthAdapter(array('consumerKey' => '', 'consumerSecret' => '', 'callbackUrl' => '',
+            'baseUrl' => 'http://puma.uni-kassel.de/', 'authUrl' => 'autoRegisterSamlAndOAuth/'
+        ));
+
+        $this->assertEquals('autoRegisterSamlAndOAuth', $wrongAuthURLAdapter->authorizeURL);
+
+        $wrongAuthURLAdapter = new OAuthAdapter(array('consumerKey' => '', 'consumerSecret' => '', 'callbackUrl' => '',
+            'baseUrl' => 'http://puma.uni-kassel.de/', 'authUrl' => '/autoRegisterSamlAndOAuth/'
+        ));
+
+        $this->assertEquals('autoRegisterSamlAndOAuth', $wrongAuthURLAdapter->authorizeURL);
+    }
+
+    /**
      * Example
      */
     protected function setUp()
