@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "~4.0",
+        "guzzlehttp/guzzle": "~6.0",
         "guzzlehttp/oauth-subscriber": "*",
         "phpunit/phpunit": "4.4.*"
     },
