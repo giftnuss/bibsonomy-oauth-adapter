@@ -1,5 +1,5 @@
 {
-    "name": "academicpuma/bibsonomy-oauth-adapter",
+    "name": "giftnuss/bibsonomy-oauth-adapter",
     "description": "Guzzle adapter for 3-legged OAuth1 token exchange with PUMA and BibSonomy.",
     "license": "GPLv3",
     "authors": [
